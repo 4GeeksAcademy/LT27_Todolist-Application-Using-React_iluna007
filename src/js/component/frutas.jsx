@@ -2,15 +2,17 @@ import React, { useState } from "react";
 
 const Frutas = () => {
     const [inputValue, setInputValue] = useState("");
-    const [frutas, setFrutas] = useState(['Manzana', 'Pera', 'Banana', 'Naranja']);
-    const [count, setCount] = useState(0);
+    const [frutas, setFrutas] = useState(['Make the bed', 'Wash my hands', 'Eat', 'Walk the dog']);
+    const [count, setCount] = useState(frutas.length);
 
-    function agregar(){ 
-        console.log("Agregando fruta");
-        const nuevasFrutas = [...frutas, inputValue];
-        setFrutas(nuevasFrutas);
-        setInputValue(""); // reset input value
-        setCount(count+1);
+    function oprimirEnter(e){
+        if(e.key === "Enter"){
+            console.log("Agregando fruta");
+            const nuevasFrutas = [...frutas, inputValue];
+            setFrutas(nuevasFrutas);
+            setInputValue("que mas?"); 
+            setCount(count+1);
+        }
     }
 
     function quitar(){ 
@@ -22,15 +24,27 @@ const Frutas = () => {
 
     return (
         <div>
-            <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} />
-            {frutas.map((fruta, index) => (
-                <div key={index}>
-                    {fruta}
-                    <button onClick={() => quitar(index)}>Quitar</button>
-                </div>
-            ))}
-            {count} item left
-            <button onClick={agregar}>Agregar</button>
+            <h1>todos</h1>
+            <div className="d-flex justify-content-center">
+                <ul className="list-group">
+                    <li className="list-group-item"><input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} onKeyDown={oprimirEnter} /></li>
+                    
+                            {frutas.map((fruta, index) => (
+                            <li className="list-group-item" key={index}>
+                                <div className="d-flex">
+                                    <div className="p-2 w-100">{fruta}</div>
+                                    <div className="p-2 flex-shrink-1">
+                                        <button type="button" class="btn" onClick={() => quitar(index)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" onClick={() => quitar(index)}>
+                                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                            </svg> 
+                                        </button>
+                                    </div>
+                                </div>    
+                            </li>
+                        ))}
+                    <li className="list-group-item">{count} item left</li>
+                </ul>
+            </div>
         </div>
     );
 };
