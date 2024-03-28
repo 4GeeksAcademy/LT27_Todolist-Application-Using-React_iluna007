@@ -52,7 +52,11 @@ const Frutas = () => {
                                 </div>    
                             </li>
                         ))}
-                    <li className="list-group-item"><p className="opacity-50 fw-lighter">{count}item left</p></li>
+                    <li className="list-group-item">
+                        <p className="opacity-50 fw-lighter">
+                        {count === 0 ? "No task, add a task" : `${count} items left`}
+                        </p>
+                    </li>
                 </ul>
             </div>
         </div>
