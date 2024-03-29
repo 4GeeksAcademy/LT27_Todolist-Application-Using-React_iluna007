@@ -6,11 +6,8 @@ import ReactDOM from "react-dom";
 import "../styles/index.css";
 
 //import your own components
-import Frutas from "./component/frutas.jsx";
-import Cart from "./component/cart.jsx";
-import Forms from "./component/forms.jsx";
-import Onkeydown from "./component/onkeydown.jsx";
-//import Listas from "./component/listas.jsx";
+import Listas from "./component/todolist.jsx";
+
 
 //render your react application
-ReactDOM.render(<Frutas />, document.querySelector("#app"));
+ReactDOM.render(<Listas />, document.querySelector("#app"));

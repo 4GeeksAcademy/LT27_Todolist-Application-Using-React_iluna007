@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 
-const Frutas = () => {
+const Listas = () => {
     const [inputValue, setInputValue] = useState("");
-    const [frutas, setFrutas] = useState(['Make the bed', 'Wash my hands', 'Eat', 'Walk the dog']);
-    const [count, setCount] = useState(frutas.length);
+    const [tarea, setTarea] = useState(['Make the bed', 'Wash my hands', 'Eat', 'Walk the dog']);
+    const [count, setCount] = useState(tarea.length);
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     function oprimirEnter(e){
         if(e.key === "Enter"){
-            console.log("Agregando fruta");
-            const nuevasFrutas = [...frutas, inputValue];
-            setFrutas(nuevasFrutas);
+            console.log("Agregando tarea");
+            const nuevasListas = [...tarea, inputValue];
+            setTarea(nuevasListas);
             setInputValue("que mas?"); 
             setCount(count+1);
         }
     }
 
     function quitar(){ 
-        console.log("Quitando fruta");
-        const nuevasFrutas = frutas.slice(0, -1);
-        setFrutas(nuevasFrutas);
+        console.log("Quitando tarea");
+        const nuevasListas = tarea.slice(0, -1);
+        setTarea(nuevasListas);
         setCount(count-1);
     }
 
@@ -32,7 +32,7 @@ const Frutas = () => {
                 <ul className="list-group shadow-sm p-3 mb-5 bg-body-tertiary rounded">
                     <li className="list-group-item opacity-50"><input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} onKeyDown={oprimirEnter} /></li>
                     
-                            {frutas.map((fruta, index) => (
+                            {tarea.map((tarea, index) => (
                             <li className="list-group-item" key={index}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
@@ -40,7 +40,7 @@ const Frutas = () => {
                             
                             >
                                 <div className="d-flex">
-                                    <div className="p-2 w-100">{fruta}</div>
+                                    <div className="p-2 w-100">{tarea}</div>
                                     <div className="p-2 flex-shrink-1">
                                         {hoveredIndex === index && ( 
                                             <button type="button" class="btn" onClick={() => quitar(index)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" onClick={() => quitar(index)}>
@@ -63,4 +63,4 @@ const Frutas = () => {
     );
 };
 
-export default Frutas;
+export default Listas;
